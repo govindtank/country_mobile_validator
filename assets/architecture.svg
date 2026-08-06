@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="460" viewBox="0 0 900 460">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#58a6ff"/>
+      <stop offset="1" stop-color="#bc8cff"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="460" fill="url(#bg)" rx="14"/>
+  <text x="30" y="42" font-family="SF Mono, Menlo, monospace" font-size="20" font-weight="bold" fill="#e6edf3">mobile_num_kit — architecture</text>
+  <text x="30" y="66" font-family="SF Mono, Menlo, monospace" font-size="12" fill="#8b949e">range-aware mobile validation · refreshable verified metadata</text>
+
+  <!-- source box -->
+  <rect x="30" y="95" width="240" height="120" rx="10" fill="#1c2128" stroke="#30363d"/>
+  <text x="150" y="120" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="13" font-weight="bold" fill="#58a6ff">libphonenumber</text>
+  <text x="150" y="139" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">PhoneNumberMetadata.xml</text>
+  <text x="150" y="156" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">254 territories · Apache-2.0</text>
+  <text x="150" y="175" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">possibleLengths per type</text>
+  <text x="150" y="194" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">mobile / tollfree / premium regexes</text>
+
+  <!-- pipeline -->
+  <rect x="330" y="95" width="240" height="120" rx="10" fill="#1c2128" stroke="#30363d"/>
+  <text x="450" y="120" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="13" font-weight="bold" fill="#bc8cff">tools/ (Python)</text>
+  <text x="450" y="139" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">extract_metadata.py</text>
+  <text x="450" y="158" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">→ regions.json (101 KB)</text>
+  <text x="450" y="177" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">gen_dart_data.py</text>
+  <text x="450" y="196" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">→ regions_data.dart (const)</text>
+
+  <!-- runtime -->
+  <rect x="630" y="95" width="240" height="120" rx="10" fill="#1c2128" stroke="#30363d"/>
+  <text x="750" y="120" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="13" font-weight="bold" fill="#3fb950">Dart core (pure)</text>
+  <text x="750" y="139" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">MobileNumberKit</text>
+  <text x="750" y="158" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">parser · validator · store</text>
+  <text x="750" y="177" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">~8 µs/op · no channels</text>
+  <text x="750" y="196" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">VM · Flutter · web</text>
+
+  <!-- arrows -->
+  <path d="M270 155 H322" stroke="#58a6ff" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M570 155 H622" stroke="#bc8cff" stroke-width="2" marker-end="url(#arr)"/>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8b949e"/></marker></defs>
+
+  <!-- refresh -->
+  <rect x="30" y="260" width="400" height="120" rx="10" fill="#1c2128" stroke="#30363d"/>
+  <text x="230" y="285" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="13" font-weight="bold" fill="#d29922">MetadataUpdater (opt-in refresh)</text>
+  <text x="230" y="304" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">manifest.json → {version, sha256, url}</text>
+  <text x="230" y="323" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">download → verify SHA-256 → parse → swap</text>
+  <text x="230" y="342" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">network down? bundled snapshot stays —</text>
+  <text x="230" y="361" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">nothing breaks (offline fallback)</text>
+
+  <rect x="470" y="260" width="400" height="120" rx="10" fill="#1c2128" stroke="#30363d"/>
+  <text x="670" y="285" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="13" font-weight="bold" fill="#3fb950">ValidationResult</text>
+  <text x="670" y="304" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">isValid · isMobile · isOtpDeliverable</text>
+  <text x="670" y="323" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">type: mobile / tollFree / premiumRate…</text>
+  <text x="670" y="342" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">regionCode · range · version</text>
+  <text x="670" y="361" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">staleness visible, never hidden</text>
+
+  <text x="30" y="425" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">golden corpus test: every region's official example mobile must validate · 37 tests · CI-friendly</text>
+</svg>

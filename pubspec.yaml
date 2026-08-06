@@ -1,0 +1,16 @@
+name: mobile_num_kit
+description: >-
+  Real-time updated mobile number validation per country with full range
+  awareness (8-10 digit countries), mobile/landline/special-type detection,
+  region autodetection, and refreshable versioned metadata. Pure Dart core.
+version: 0.1.0
+repository: https://github.com/govindtank/mobile_num_kit
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  crypto: ^3.0.3
+
+dev_dependencies:
+  lints: ^4.0.0
+  test: ^1.25.0
