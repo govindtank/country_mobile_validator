@@ -1,1 +1,8 @@
+# Generated data (regenerated via tool/gen_dart_data.py)
 tool/data/regions.json
+
+# Build artifacts (pub ignores .gitignore when .pubignore exists)
+.dart_tool/
+example/.dart_tool/
+example/build/
+build/
