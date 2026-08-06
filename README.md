@@ -114,6 +114,11 @@ A complete Flutter demo wiring this library to `country_code_picker` with live
 range feedback and OTP verdicts: [`example/`](example/README.md)
 (`cd example && flutter run`).
 
+## Blog post
+
+A complete guide with code samples: [Validating Mobile Numbers the Right Way:
+Introducing country_mobile_validator](https://govindtank.github.io/blog/validating-mobile-numbers-right-way-country-mobile-validator)
+
 ## Development
 
 ```bash
