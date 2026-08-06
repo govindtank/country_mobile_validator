@@ -1,0 +1,24 @@
+name: country_mobile_validator_example
+description: >-
+  Complete demo of country_mobile_validator integrated with
+  country_code_picker: pick a country, type a mobile number, see live
+  length-range feedback and an OTP-safe validation verdict.
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  country_code_picker: ^3.4.1
+  country_mobile_validator:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

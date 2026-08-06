@@ -48,6 +48,25 @@ print(v.validate('911234567').isValid);           // false (too short)
 print(v.lengthHint);                              // "10–11 digits"
 ```
 
+## Features at a glance
+
+| Feature | API | What it gives you |
+|---|---|---|
+| **Per-country mobile length ranges** | `forRegion('NZ').mobileLengthRange` → `(8, 10)` | The real allowed lengths — never hardcoded "10 digits" |
+| **Live length check** | `forRegion('AR').isMobileLength(9)` → `false` | Real-time feedback while typing |
+| **Range error message** | `forRegion('BR').lengthHint` → `"10–11 digits"` | User-facing "enter 10–11 digits" hints |
+| **Pinned validation** | `validateForCountry('IN', '9876543210')` | `country_code_picker`-style flow (see below) |
+| **Auto-detection** | `validate('+1 415 555 2671')` | Region resolved from the calling code (+1 → US/CA…) |
+| **Mobile-only verdict** | `result.isMobile`, `result.isOtpDeliverable` | OTP-safe: toll-free/premium/landline rejected |
+| **Type awareness** | `result.type` → `tollFree`/`premiumRate`/… | Know *what* the number is, not just if it's "valid" |
+| **Rejection reason** | `result.issue` → `tooShort`/`invalidPrefix`/… | Why it failed — great for inline form errors |
+| **Fresh metadata** | `MetadataUpdater` + `result.metadataVersion` | SHA-256 verified updates, offline fallback |
+| **Input hygiene** | separators, Unicode digits, extensions | `+91 (98765) 43210 x2` parses cleanly |
+
+**▶ Run the live demo:** [`example/`](example/README.md) — a complete Flutter app
+wiring this library to `country_code_picker` with live range feedback and
+OTP-safe verdicts (`cd example && flutter run`).
+
 ## `country_code_picker` integration (the workflow this library was built for)
 
 Use [country_code_picker](https://pub.dev/packages/country_code_picker) for the
