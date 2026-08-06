@@ -61,6 +61,7 @@ void main() {
 
     expect(find.text('Not a valid mobile'), findsOneWidget);
     expect(find.text('tollFree'), findsOneWidget);
-    expect(find.textContaining('false'), findsWidgets); // isOtpDeliverable false
+    expect(
+        find.textContaining('false'), findsWidgets); // isOtpDeliverable false
   });
 }

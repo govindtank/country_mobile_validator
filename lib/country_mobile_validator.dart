@@ -7,7 +7,8 @@ library;
 
 export 'src/store.dart' show RegionInfo, RegionsStore;
 export 'src/data/regions_data.dart' show kRegionsJson;
-export 'src/types.dart' show NumberRange, NumberType, ValidationIssue, ValidationResult;
+export 'src/types.dart'
+    show NumberRange, NumberType, ValidationIssue, ValidationResult;
 export 'src/parser.dart' show ParsedNumber, parseNumber;
 export 'src/updater.dart'
     show

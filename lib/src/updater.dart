@@ -93,24 +93,27 @@ class MetadataUpdater {
   final UrlFetcher _fetcher;
 
   /// Last verified metadata payload (region JSON list), null until a
-  /// successful update. Pass to [MobileNumberKit.loadMetadata].
+  /// successful update. Pass to [MobileNumberKit.loadRefreshedMetadata].
   String? lastVerifiedJson;
 
   /// Fetches the manifest; if its version differs from [currentVersion],
   /// downloads the snapshot, verifies SHA-256, and stores it in
   /// [lastVerifiedJson]. Never throws on network failure — returns
   /// [MetadataUpdateResult] with error so callers can fall back offline.
-  Future<MetadataUpdateResult> checkAndUpdate({required String currentVersion}) async {
+  Future<MetadataUpdateResult> checkAndUpdate(
+      {required String currentVersion}) async {
     MetadataManifest? manifest;
     try {
       final bytes = await _fetcher(manifestUrl);
       final j = jsonDecode(utf8.decode(bytes));
       manifest = MetadataManifest.fromJson(j as Map<String, dynamic>);
     } catch (e) {
-      return MetadataUpdateResult(success: false, error: 'manifest fetch failed: $e');
+      return MetadataUpdateResult(
+          success: false, error: 'manifest fetch failed: $e');
     }
     if (manifest == null) {
-      return const MetadataUpdateResult(success: false, error: 'invalid manifest');
+      return const MetadataUpdateResult(
+          success: false, error: 'invalid manifest');
     }
     if (manifest.version == currentVersion) {
       return MetadataUpdateResult(success: true, newVersion: manifest.version);
@@ -130,7 +133,8 @@ class MetadataUpdater {
       lastVerifiedJson = utf8.decode(data);
       return MetadataUpdateResult(success: true, newVersion: manifest.version);
     } catch (e) {
-      return MetadataUpdateResult(success: false, error: 'snapshot update failed: $e');
+      return MetadataUpdateResult(
+          success: false, error: 'snapshot update failed: $e');
     }
   }
 }

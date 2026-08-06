@@ -31,7 +31,7 @@ class RegionInfo {
   final String nationalPrefix;
   final bool isMain;
 
-  /// [min, max] national significant length for mobile numbers.
+  /// `min`–`max` national significant length for mobile numbers.
   final (int, int)? mobileRange;
   final String? mobilePattern;
   final String? mobileExample;
@@ -46,8 +46,9 @@ class RegionInfo {
   bool get hasMobile => mobilePattern != null;
 
   /// Mobile length range as a [NumberRange] (null when unknown).
-  NumberRange? get mobileNumberRange =>
-      mobileRange == null ? null : NumberRange(min: mobileRange!.$1, max: mobileRange!.$2);
+  NumberRange? get mobileNumberRange => mobileRange == null
+      ? null
+      : NumberRange(min: mobileRange!.$1, max: mobileRange!.$2);
 
   static RegionInfo fromJson(Map<String, dynamic> j) {
     (int, int)? len;
@@ -92,7 +93,7 @@ class RegionsStore {
   Map<String, RegionInfo>? _byId;
   Map<int, List<RegionInfo>>? _byCc;
 
-  /// All regions keyed by ISO-2 id (plus X<cc> for non-geo).
+  /// All regions keyed by ISO-2 id (plus `X<cc>` for non-geo).
   Map<String, RegionInfo> get byId {
     _byId ??= _load(kRegionsJson);
     return _byId!;
@@ -121,7 +122,8 @@ class RegionsStore {
   Map<String, RegionInfo> _load(String source) {
     final data = jsonDecode(source) as List<dynamic>;
     return {
-      for (final e in data) (e as Map<String, dynamic>)['id'] as String: RegionInfo.fromJson(e),
+      for (final e in data)
+        (e as Map<String, dynamic>)['id'] as String: RegionInfo.fromJson(e),
     };
   }
 

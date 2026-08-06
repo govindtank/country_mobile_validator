@@ -55,7 +55,8 @@ class NumberRange {
   final String? prefixes;
 
   @override
-  String toString() => 'NumberRange($min-$max${prefixes == null ? '' : ', prefixes: $prefixes'})';
+  String toString() =>
+      'NumberRange($min-$max${prefixes == null ? '' : ', prefixes: $prefixes'})';
 }
 
 /// A single validated number result.
@@ -84,13 +85,12 @@ class ValidationResult {
 
   /// True when this number is realistically OTP/SMS-deliverable:
   /// valid AND mobile AND not a special type (toll-free/premium/short-code).
-  bool get isOtpDeliverable =>
-      isValid && isMobile && type == NumberType.mobile;
+  bool get isOtpDeliverable => isValid && isMobile && type == NumberType.mobile;
 
   final NumberType type;
   final ValidationIssue issue;
 
-  /// Region code (ISO-2 or "X<cc>" for non-geographic), when known.
+  /// Region code (ISO-2 or `X<cc>` for non-geographic), when known.
   final String? regionCode;
 
   /// Country calling code.

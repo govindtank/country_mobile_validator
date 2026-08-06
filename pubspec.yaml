@@ -1,10 +1,16 @@
 name: country_mobile_validator
 description: >-
-  Validate mobile numbers per country with real length ranges (8-10, 10-11
-  digits...), mobile-only type detection, and country_code_picker-friendly
-  API. Pure Dart, refreshable libphonenumber metadata.
-version: 0.1.0
+  Validate mobile numbers per country using real length ranges (8-10, 10-11
+  digits), mobile-only detection, and a country_code_picker-friendly API.
+version: 0.1.1
 repository: https://github.com/govindtank/country_mobile_validator
+topics:
+  - mobile
+  - validation
+  - phone-number
+  - country-code
+  - flutter
+
 environment:
   sdk: ^3.5.0
 

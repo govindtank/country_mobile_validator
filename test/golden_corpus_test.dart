@@ -25,10 +25,12 @@ void main() {
       final cc = r['cc'] as int;
       final res = kit.validate('+$cc$ex');
       if (!res.isValid || !res.isMobile) {
-        failures.add('$id: +$cc$ex → valid=${res.isValid} mobile=${res.isMobile} type=${res.type} issue=${res.issue}');
+        failures.add(
+            '$id: +$cc$ex → valid=${res.isValid} mobile=${res.isMobile} type=${res.type} issue=${res.issue}');
       }
     }
-    expect(failures, isEmpty, reason: 'Example-number failures:\n${failures.join('\n')}');
+    expect(failures, isEmpty,
+        reason: 'Example-number failures:\n${failures.join('\n')}');
   });
 
   test('example numbers are within declared mobile length range', () {
@@ -47,7 +49,11 @@ void main() {
   });
 
   test('every region with a pattern has a valid length range', () {
-    final missing = regions.where((r) => r['mob_len'] == null && r['mob_pat'] != null).map((r) => r['id']).toList();
-    expect(missing, isEmpty, reason: 'Regions with pattern but no length: $missing');
+    final missing = regions
+        .where((r) => r['mob_len'] == null && r['mob_pat'] != null)
+        .map((r) => r['id'])
+        .toList();
+    expect(missing, isEmpty,
+        reason: 'Regions with pattern but no length: $missing');
   });
 }

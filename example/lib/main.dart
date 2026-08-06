@@ -183,8 +183,11 @@ class _ValidatorScreenState extends State<ValidatorScreen> {
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
-                      prefixText: picked?.dialCode == null ? null : '${picked!.dialCode} ',
-                      hintText: 'e.g. ${_samples[picked?.code] ?? '9876543210'}',
+                      prefixText: picked?.dialCode == null
+                          ? null
+                          : '${picked!.dialCode} ',
+                      hintText:
+                          'e.g. ${_samples[picked?.code] ?? '9876543210'}',
                       suffixIcon: picked != null
                           ? IconButton(
                               icon: const Icon(Icons.auto_fix_high),
@@ -290,9 +293,12 @@ class _ResultCard extends StatelessWidget {
             _kv(context, 'Type', result.type.name),
             _kv(context, 'isMobile', '${result.isMobile}'),
             _kv(context, 'isOtpDeliverable', '${result.isOtpDeliverable}'),
-            _kv(context, 'Mobile length range', result.mobileRange == null
-                ? '—'
-                : '${result.mobileRange!.min}–${result.mobileRange!.max} digits'),
+            _kv(
+                context,
+                'Mobile length range',
+                result.mobileRange == null
+                    ? '—'
+                    : '${result.mobileRange!.min}–${result.mobileRange!.max} digits'),
             _kv(context, 'Issue (if invalid)', result.issue.name),
             _kv(context, 'Metadata version', result.metadataVersion),
             const SizedBox(height: 8),
@@ -329,8 +335,7 @@ class _ResultCard extends StatelessWidget {
           children: [
             SizedBox(
               width: 150,
-              child: Text(k,
-                  style: Theme.of(context).textTheme.bodySmall),
+              child: Text(k, style: Theme.of(context).textTheme.bodySmall),
             ),
             Expanded(
               child: Text(v,

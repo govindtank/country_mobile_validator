@@ -1,3 +1,9 @@
+## 0.1.1
+
+- Full 160/160 pub.dev score: fixed doc-comment HTML warnings, formatted
+  source, added topics, trimmed description, CHANGELOG entry.
+- `MetadataUpdater` doc reference now points to `loadRefreshedMetadata`.
+
 ## 0.1.0
 
 - Initial release.

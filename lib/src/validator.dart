@@ -8,12 +8,24 @@ import 'types.dart';
 /// Validates mobile numbers against a single region's rules.
 class MobileValidator {
   MobileValidator(this.region, {this.metadataVersion = 'bundled-0.1.0'})
-      : _mobileRe = region.mobilePattern == null ? null : RegExp('^${region.mobilePattern}\$'),
-        _fixedRe = region.fixedPattern == null ? null : RegExp('^${region.fixedPattern}\$'),
-        _tfRe = region.tollFreePattern == null ? null : RegExp('^${region.tollFreePattern}\$'),
-        _prRe = region.premiumPattern == null ? null : RegExp('^${region.premiumPattern}\$'),
-        _scRe = region.shortCodePattern == null ? null : RegExp('^${region.shortCodePattern}\$'),
-        _shcRe = region.sharedCostPattern == null ? null : RegExp('^${region.sharedCostPattern}\$');
+      : _mobileRe = region.mobilePattern == null
+            ? null
+            : RegExp('^${region.mobilePattern}\$'),
+        _fixedRe = region.fixedPattern == null
+            ? null
+            : RegExp('^${region.fixedPattern}\$'),
+        _tfRe = region.tollFreePattern == null
+            ? null
+            : RegExp('^${region.tollFreePattern}\$'),
+        _prRe = region.premiumPattern == null
+            ? null
+            : RegExp('^${region.premiumPattern}\$'),
+        _scRe = region.shortCodePattern == null
+            ? null
+            : RegExp('^${region.shortCodePattern}\$'),
+        _shcRe = region.sharedCostPattern == null
+            ? null
+            : RegExp('^${region.sharedCostPattern}\$');
 
   final RegionInfo region;
   final String metadataVersion;
@@ -56,7 +68,8 @@ class MobileValidator {
 
   ValidationResult validate(String input) {
     final norm = normalizeDigits(input);
-    return validateNationalDigits(norm.digits, extension: norm.extension, rawInput: input);
+    return validateNationalDigits(norm.digits,
+        extension: norm.extension, rawInput: input);
   }
 
   /// Validates already-normalized national significant digits (no CC).
@@ -74,7 +87,9 @@ class MobileValidator {
         isValid: false,
         isMobile: false,
         type: NumberType.notANumber,
-        issue: extension != null ? ValidationIssue.empty : ValidationIssue.notANumber,
+        issue: extension != null
+            ? ValidationIssue.empty
+            : ValidationIssue.notANumber,
         metadataVersion: metadataVersion,
       );
     }
@@ -82,16 +97,20 @@ class MobileValidator {
     // --- special types first (flag, don't silently accept as mobile) ---
     if (n >= 3) {
       if (_tfRe?.hasMatch(digits) ?? false) {
-        return _special(rawInput ?? digits, digits, NumberType.tollFree, ValidationIssue.specialType);
+        return _special(rawInput ?? digits, digits, NumberType.tollFree,
+            ValidationIssue.specialType);
       }
       if (_prRe?.hasMatch(digits) ?? false) {
-        return _special(rawInput ?? digits, digits, NumberType.premiumRate, ValidationIssue.specialType);
+        return _special(rawInput ?? digits, digits, NumberType.premiumRate,
+            ValidationIssue.specialType);
       }
       if (_shcRe?.hasMatch(digits) ?? false) {
-        return _special(rawInput ?? digits, digits, NumberType.sharedCost, ValidationIssue.specialType);
+        return _special(rawInput ?? digits, digits, NumberType.sharedCost,
+            ValidationIssue.specialType);
       }
       if (_scRe?.hasMatch(digits) ?? false) {
-        return _special(rawInput ?? digits, digits, NumberType.shortCode, ValidationIssue.specialType);
+        return _special(rawInput ?? digits, digits, NumberType.shortCode,
+            ValidationIssue.specialType);
       }
     }
 
@@ -165,7 +184,8 @@ class MobileValidator {
     );
   }
 
-  ValidationResult _special(String input, String digits, NumberType t, ValidationIssue i) {
+  ValidationResult _special(
+      String input, String digits, NumberType t, ValidationIssue i) {
     return ValidationResult(
       input: input,
       isValid: false, // not a mobile number
@@ -263,7 +283,7 @@ class MobileNumberKit {
     return best!;
   }
 
-  /// All regions sharing a calling code (e.g. 1 → [US, CA, ...]).
+  /// All regions sharing a calling code (e.g. 1 → `US`, `CA`, ...).
   List<RegionInfo> regionsForCountryCode(int cc) =>
       _store.forCountryCode(cc) ?? const [];
 

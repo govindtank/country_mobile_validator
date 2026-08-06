@@ -76,55 +76,57 @@ void main() {
       expect(r.regionCode, 'AR');
     });
 
-  group('country_code_picker integration', () {
-    test('validateForCountry validates against the real length range', () {
-      // country_code_picker hands us Country.countryCode ("AR") + national input.
-      final res = kit.validateForCountry('AR', '91123456789');
-      expect(res.isValid, isTrue);
-      expect(res.isMobile, isTrue);
+    group('country_code_picker integration', () {
+      test('validateForCountry validates against the real length range', () {
+        // country_code_picker hands us Country.countryCode ("AR") + national input.
+        final res = kit.validateForCountry('AR', '91123456789');
+        expect(res.isValid, isTrue);
+        expect(res.isMobile, isTrue);
 
-      // Too short for Argentina's 10-11 range → invalid.
-      expect(kit.validateForCountry('AR', '911234567').isValid, isFalse);
+        // Too short for Argentina's 10-11 range → invalid.
+        expect(kit.validateForCountry('AR', '911234567').isValid, isFalse);
+      });
+
+      test('lengthHint drives user-facing error messages', () {
+        final v = kit.forRegion('NZ');
+        expect(v.lengthHint, '8–10 digits');
+        expect(v.isMobileLength(8), isTrue);
+        expect(v.isMobileLength(10), isTrue);
+        expect(v.isMobileLength(7), isFalse);
+
+        final v2 = kit.forRegion('IN');
+        expect(v2.lengthHint, '10 digits');
+        expect(v2.mobileLengthRange, (10, 10));
+      });
+
+      test('validateForCountry + dial code mirrors country_code_picker flow',
+          () {
+        // Typical picker state: dialCode "+91", countryCode "IN", raw input.
+        const dialCode = '+91';
+        const countryCode = 'IN';
+        const raw = '9876543210';
+
+        // Smart path: full international format.
+        final smart = kit.validate('$dialCode$raw');
+        expect(smart.isValid, isTrue);
+        expect(smart.regionCode, 'IN');
+
+        // Pinned path: national format against the picker's country.
+        final pinned = kit.validateForCountry(countryCode, raw);
+        expect(pinned.isValid, isTrue);
+        expect(pinned.isMobile, isTrue);
+      });
+
+      test('unknown region throws with clear message', () {
+        expect(() => kit.validateForCountry('XX', '123'), throwsArgumentError);
+      });
     });
-
-    test('lengthHint drives user-facing error messages', () {
-      final v = kit.forRegion('NZ');
-      expect(v.lengthHint, '8–10 digits');
-      expect(v.isMobileLength(8), isTrue);
-      expect(v.isMobileLength(10), isTrue);
-      expect(v.isMobileLength(7), isFalse);
-
-      final v2 = kit.forRegion('IN');
-      expect(v2.lengthHint, '10 digits');
-      expect(v2.mobileLengthRange, (10, 10));
-    });
-
-    test('validateForCountry + dial code mirrors country_code_picker flow', () {
-      // Typical picker state: dialCode "+91", countryCode "IN", raw input.
-      const dialCode = '+91';
-      const countryCode = 'IN';
-      const raw = '9876543210';
-
-      // Smart path: full international format.
-      final smart = kit.validate('$dialCode$raw');
-      expect(smart.isValid, isTrue);
-      expect(smart.regionCode, 'IN');
-
-      // Pinned path: national format against the picker's country.
-      final pinned = kit.validateForCountry(countryCode, raw);
-      expect(pinned.isValid, isTrue);
-      expect(pinned.isMobile, isTrue);
-    });
-
-    test('unknown region throws with clear message', () {
-      expect(() => kit.validateForCountry('XX', '123'), throwsArgumentError);
-    });
-  });
 
     test('US — valid NANP mobile', () {
       final r = kit.validate('+14155552671');
       expect(r.isValid, isTrue);
-      expect(r.isMobile, isTrue); // US pattern is same as fixed, both "mobile" per metadata
+      expect(r.isMobile,
+          isTrue); // US pattern is same as fixed, both "mobile" per metadata
       expect(r.regionCode, 'US');
     });
 
@@ -195,7 +197,8 @@ void main() {
 
     test('Unicode digits normalized', () {
       // Arabic-Indic digits for 9876543210
-      final arDigits = '\u{0669}\u{0668}\u{0667}\u{0666}\u{0665}\u{0664}\u{0663}\u{0662}\u{0661}\u{0660}';
+      final arDigits =
+          '\u{0669}\u{0668}\u{0667}\u{0666}\u{0665}\u{0664}\u{0663}\u{0662}\u{0661}\u{0660}';
       expect(kit.forRegion('IN').validate(arDigits).isValid, isTrue);
     });
 
