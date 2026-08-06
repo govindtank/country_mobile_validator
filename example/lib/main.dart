@@ -38,7 +38,7 @@ class ValidatorScreen extends StatefulWidget {
 }
 
 class _ValidatorScreenState extends State<ValidatorScreen> {
-  final kit = MobileNumberKit();
+  final kit = CountryMobileValidator();
   final controller = TextEditingController();
 
   CountryCode? _country; // picked via country_code_picker

@@ -56,7 +56,7 @@ void main() {
       expect(u.lastVerifiedJson, data);
 
       // And the refreshed data actually loads and validates.
-      final kit = MobileNumberKit();
+      final kit = CountryMobileValidator();
       kit.loadRefreshedMetadata(u.lastVerifiedJson!, version: res.newVersion!);
       expect(kit.hasRegion('ZZ'), isTrue);
       final r = kit.forRegion('ZZ').validate('5123456789');

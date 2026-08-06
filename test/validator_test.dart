@@ -2,8 +2,8 @@ import 'package:country_mobile_validator/country_mobile_validator.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('MobileNumberKit basics', () {
-    final kit = MobileNumberKit();
+  group('CountryMobileValidator basics', () {
+    final kit = CountryMobileValidator();
 
     test('metadata loads all regions', () {
       expect(kit.regionCount, greaterThan(200));
@@ -24,7 +24,7 @@ void main() {
   });
 
   group('Range API — the core differentiator', () {
-    final kit = MobileNumberKit();
+    final kit = CountryMobileValidator();
 
     test('variable length countries expose real ranges', () {
       final ar = kit.forRegion('AR').mobileLengthRange;
@@ -50,7 +50,7 @@ void main() {
   });
 
   group('Country-code aware validation', () {
-    final kit = MobileNumberKit();
+    final kit = CountryMobileValidator();
 
     test('India mobile', () {
       final r = kit.validate('+919876543210');
@@ -152,7 +152,7 @@ void main() {
   });
 
   group('Region-pinned validation (no +CC)', () {
-    final kit = MobileNumberKit();
+    final kit = CountryMobileValidator();
 
     test('Argentina national format', () {
       final v = kit.forRegion('AR');
@@ -187,7 +187,7 @@ void main() {
   });
 
   group('Input normalization', () {
-    final kit = MobileNumberKit();
+    final kit = CountryMobileValidator();
 
     test('separators stripped', () {
       expect(kit.validate('+91 98765 43210').isValid, isTrue);
@@ -222,7 +222,7 @@ void main() {
   });
 
   group('Regional edge cases', () {
-    final kit = MobileNumberKit();
+    final kit = CountryMobileValidator();
 
     test('Germany mobile 11 digits', () {
       expect(kit.validate('+4915123456789').isValid, isTrue);
@@ -250,6 +250,33 @@ void main() {
     test('US via +1 — SF number resolves to US (main NANP first)', () {
       final r = kit.validate('+14155552671');
       expect(r.regionCode, 'US');
+    });
+  });
+
+  group('Zero-setup top-level API', () {
+    test('validateMobile auto-detects country', () {
+      final r = validateMobile('+91 98765 43210');
+      expect(r.isValid, isTrue);
+      expect(r.isMobile, isTrue);
+      expect(r.regionCode, 'IN');
+    });
+
+    test('validateMobile pins country via countryCode', () {
+      final r = validateMobile('91123456789', countryCode: 'AR');
+      expect(r.isValid, isTrue);
+      expect(r.mobileRange!.min, 10);
+      expect(r.mobileRange!.max, 11);
+    });
+
+    test('validateMobile unknown countryCode → invalid, never throws', () {
+      final r = validateMobile('9876543210', countryCode: 'ZZ');
+      expect(r.isValid, isFalse);
+      expect(r.issue, ValidationIssue.unknownCountry);
+    });
+
+    test('mobileValidator global instance shares the store', () {
+      expect(mobileValidator.hasRegion('BR'), isTrue);
+      expect(mobileValidator.validate('+5511987654321').isValid, isTrue);
     });
   });
 }

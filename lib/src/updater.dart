@@ -93,7 +93,7 @@ class MetadataUpdater {
   final UrlFetcher _fetcher;
 
   /// Last verified metadata payload (region JSON list), null until a
-  /// successful update. Pass to [MobileNumberKit.loadRefreshedMetadata].
+  /// successful update. Pass to [CountryMobileValidator.loadRefreshedMetadata].
   String? lastVerifiedJson;
 
   /// Fetches the manifest; if its version differs from [currentVersion],

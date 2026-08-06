@@ -18,4 +18,9 @@ export 'src/updater.dart'
         UrlFetcher,
         defaultUrlFetcher,
         sha256Hex;
-export 'src/validator.dart' show MobileNumberKit, MobileValidator;
+export 'src/validator.dart'
+    show
+        CountryMobileValidator,
+        MobileValidator,
+        mobileValidator,
+        validateMobile;

@@ -2,7 +2,7 @@ name: country_mobile_validator
 description: >-
   Validate mobile numbers per country using real length ranges (8-10, 10-11
   digits), mobile-only detection, and a country_code_picker-friendly API.
-version: 0.1.1
+version: 0.2.0
 repository: https://github.com/govindtank/country_mobile_validator
 topics:
   - mobile

@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 /// libphonenumber metadata must validate as a mobile number. This catches
 /// regex translation errors across all 247 mobile-enabled regions at once.
 void main() {
-  final kit = MobileNumberKit();
+  final kit = CountryMobileValidator();
 
   // Load raw metadata to read example numbers (they're embedded in kRegionsJson).
   final raw = jsonDecode(kRegionsJson) as List<dynamic>;

@@ -1,7 +1,7 @@
 import 'package:country_mobile_validator/country_mobile_validator.dart';
 
 void main() {
-  final kit = MobileNumberKit();
+  final kit = CountryMobileValidator();
 
   // Warm up lazy metadata load + regex compile.
   for (var i = 0; i < 1000; i++) {

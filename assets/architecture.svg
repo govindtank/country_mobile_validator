@@ -32,7 +32,7 @@
   <!-- runtime -->
   <rect x="630" y="95" width="240" height="120" rx="10" fill="#1c2128" stroke="#30363d"/>
   <text x="750" y="120" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="13" font-weight="bold" fill="#3fb950">Dart core (pure)</text>
-  <text x="750" y="139" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">MobileNumberKit</text>
+  <text x="750" y="139" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">CountryMobileValidator</text>
   <text x="750" y="158" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">parser · validator · store</text>
   <text x="750" y="177" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">~8 µs/op · no channels</text>
   <text x="750" y="196" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="11" fill="#8b949e">VM · Flutter · web</text>

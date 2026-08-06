@@ -7,7 +7,7 @@ import 'types.dart';
 
 /// Validates mobile numbers against a single region's rules.
 class MobileValidator {
-  MobileValidator(this.region, {this.metadataVersion = 'bundled-0.1.0'})
+  MobileValidator(this.region, {this.metadataVersion = 'bundled-0.2.0'})
       : _mobileRe = region.mobilePattern == null
             ? null
             : RegExp('^${region.mobilePattern}\$'),
@@ -73,7 +73,7 @@ class MobileValidator {
   }
 
   /// Validates already-normalized national significant digits (no CC).
-  /// Used by [MobileNumberKit.validate] after CC extraction.
+  /// Used by [CountryMobileValidator.validate] after CC extraction.
   ValidationResult validateNationalDigits(
     String digits, {
     String? extension,
@@ -202,8 +202,8 @@ class MobileValidator {
 }
 
 /// Country-code → region resolution + multi-region handling.
-class MobileNumberKit {
-  MobileNumberKit({this.metadataVersion = 'bundled-0.1.0'}) {
+class CountryMobileValidator {
+  CountryMobileValidator({this.metadataVersion = 'bundled-0.2.0'}) {
     _store = RegionsStore();
   }
 
@@ -292,4 +292,41 @@ class MobileNumberKit {
 
   /// True if the given region code is known.
   bool hasRegion(String iso2) => _store.byRegionCode(iso2) != null;
+}
+
+/// Global ready-to-use instance — the metadata store loads lazily on first
+/// use, so importing the library costs nothing.
+final CountryMobileValidator mobileValidator = CountryMobileValidator();
+
+/// One-shot mobile-number validation with zero setup.
+///
+/// Auto-detects the country from the calling code:
+///
+/// ```dart
+/// final r = validateMobile('+91 98765 43210'); // India
+/// print(r.isValid); // true
+/// ```
+///
+/// Or pin the country (the `country_code_picker` flow) — the number is
+/// checked against that country's real mobile length range:
+///
+/// ```dart
+/// final r = validateMobile('9876543210', countryCode: 'IN');
+/// ```
+///
+/// An unknown `countryCode` yields an invalid result with
+/// [ValidationIssue.unknownCountry] (never throws).
+ValidationResult validateMobile(String input, {String? countryCode}) {
+  if (countryCode == null) return mobileValidator.validate(input);
+  if (!mobileValidator.hasRegion(countryCode)) {
+    return ValidationResult(
+      input: input,
+      isValid: false,
+      isMobile: false,
+      type: NumberType.notANumber,
+      issue: ValidationIssue.unknownCountry,
+      metadataVersion: mobileValidator.metadataVersion,
+    );
+  }
+  return mobileValidator.validateForCountry(countryCode, input);
 }

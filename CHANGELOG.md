@@ -1,3 +1,13 @@
+## 0.2.0
+
+- **Breaking**: renamed the entry class `MobileNumberKit` →
+  `CountryMobileValidator` (matches the package name; old name is gone
+  everywhere — code, docs, tests, SVG).
+- **New**: zero-setup top-level API — `validateMobile(input,
+  {countryCode})` and a global `mobileValidator` instance. Unknown
+  `countryCode` returns an invalid result instead of throwing.
+- README rewritten: shorter, scannable, integration-first.
+
 ## 0.1.1
 
 - Full 160/160 pub.dev score: fixed doc-comment HTML warnings, formatted
