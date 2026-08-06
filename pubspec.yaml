@@ -1,10 +1,10 @@
-name: mobile_num_kit
+name: country_mobile_validator
 description: >-
-  Real-time updated mobile number validation per country with full range
-  awareness (8-10 digit countries), mobile/landline/special-type detection,
-  region autodetection, and refreshable versioned metadata. Pure Dart core.
+  Validate mobile numbers per country with real length ranges (8-10, 10-11
+  digits...), mobile-only type detection, and country_code_picker-friendly
+  API. Pure Dart, refreshable libphonenumber metadata.
 version: 0.1.0
-repository: https://github.com/govindtank/mobile_num_kit
+repository: https://github.com/govindtank/country_mobile_validator
 environment:
   sdk: ^3.5.0
 

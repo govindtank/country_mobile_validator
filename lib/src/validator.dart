@@ -35,6 +35,25 @@ class MobileValidator {
     return r.$1 == r.$2 ? '${r.$1} digits' : '${r.$1}–${r.$2} digits';
   }
 
+  /// True if [length] falls within this country's valid mobile length range.
+  ///
+  /// Use this for live input feedback while the user is still typing
+  /// (e.g. from a `TextEditingController` listener in a
+  /// `country_code_picker`-based form):
+  ///
+  /// ```dart
+  /// final v = kit.forRegion(c.countryCode);
+  /// final len = digitsOnly(controller.text).length;
+  /// if (!v.isMobileLength(len)) {
+  ///   setState(() => hint = 'Needs ${v.lengthHint}');
+  /// }
+  /// ```
+  bool isMobileLength(int length) {
+    final r = region.mobileRange;
+    if (r == null) return false;
+    return length >= r.$1 && length <= r.$2;
+  }
+
   ValidationResult validate(String input) {
     final norm = normalizeDigits(input);
     return validateNationalDigits(norm.digits, extension: norm.extension, rawInput: input);
@@ -182,9 +201,26 @@ class MobileNumberKit {
   /// Validator for a specific region (throws ArgumentError if unknown).
   MobileValidator forRegion(String iso2) {
     final r = _store.byRegionCode(iso2);
-    if (r == null) throw ArgumentError.value(iso2, 'iso2', 'unknown region code');
+    if (r == null) throw ArgumentError('Unknown region: $iso2');
     return MobileValidator(r, metadataVersion: metadataVersion);
   }
+
+  /// Validate a national-format number for a specific ISO-2 country.
+  ///
+  /// This is the direct counterpart to `country_code_picker`'s
+  /// `Country.countryCode` (e.g. `'IN'`, `'US'`). The number is checked
+  /// against that country's actual mobile length range and mobile prefix
+  /// pattern — never a hardcoded "10 digits" rule.
+  ///
+  /// ```dart
+  /// final res = kit.validateForCountry(c.countryCode, mobileCtrl.text);
+  /// if (!res.isValid) {
+  ///   // Use the real range in the error message:
+  ///   error = 'Enter a valid mobile number (${kit.forRegion(c.countryCode).lengthHint})';
+  /// }
+  /// ```
+  ValidationResult validateForCountry(String iso2, String nationalNumber) =>
+      forRegion(iso2).validate(nationalNumber);
 
   /// Validates a number against all candidate regions for its calling code.
   /// Returns the first region whose mobile pattern matches, or a detailed

@@ -1,4 +1,6 @@
-/// mobile_num_kit — real-time updated, range-aware mobile number validation.
+/// country_mobile_validator — validate mobile numbers per country with real
+/// length ranges (8-10, 10-11 digits...), mobile-only type detection, and a
+/// country_code_picker-friendly API.
 ///
 /// Pure Dart core: works on Flutter, Dart VM, and the web.
 library;

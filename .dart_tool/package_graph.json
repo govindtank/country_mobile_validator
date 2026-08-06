@@ -1,10 +1,10 @@
 {
   "roots": [
-    "mobile_num_kit"
+    "country_mobile_validator"
   ],
   "packages": [
     {
-      "name": "mobile_num_kit",
+      "name": "country_mobile_validator",
       "version": "0.1.0",
       "dependencies": [
         "crypto"

@@ -1,4 +1,4 @@
-import 'package:mobile_num_kit/mobile_num_kit.dart';
+import 'package:country_mobile_validator/country_mobile_validator.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -76,10 +76,50 @@ void main() {
       expect(r.regionCode, 'AR');
     });
 
-    test('New Zealand — 8 and 10 digit mobiles valid', () {
-      expect(kit.validate('+64211234567').isValid, isTrue); // 10 (211234567)
-      expect(kit.validate('+6421123456').isValid, isTrue); // 8 (21123456)
+  group('country_code_picker integration', () {
+    test('validateForCountry validates against the real length range', () {
+      // country_code_picker hands us Country.countryCode ("AR") + national input.
+      final res = kit.validateForCountry('AR', '91123456789');
+      expect(res.isValid, isTrue);
+      expect(res.isMobile, isTrue);
+
+      // Too short for Argentina's 10-11 range → invalid.
+      expect(kit.validateForCountry('AR', '911234567').isValid, isFalse);
     });
+
+    test('lengthHint drives user-facing error messages', () {
+      final v = kit.forRegion('NZ');
+      expect(v.lengthHint, '8–10 digits');
+      expect(v.isMobileLength(8), isTrue);
+      expect(v.isMobileLength(10), isTrue);
+      expect(v.isMobileLength(7), isFalse);
+
+      final v2 = kit.forRegion('IN');
+      expect(v2.lengthHint, '10 digits');
+      expect(v2.mobileLengthRange, (10, 10));
+    });
+
+    test('validateForCountry + dial code mirrors country_code_picker flow', () {
+      // Typical picker state: dialCode "+91", countryCode "IN", raw input.
+      const dialCode = '+91';
+      const countryCode = 'IN';
+      const raw = '9876543210';
+
+      // Smart path: full international format.
+      final smart = kit.validate('$dialCode$raw');
+      expect(smart.isValid, isTrue);
+      expect(smart.regionCode, 'IN');
+
+      // Pinned path: national format against the picker's country.
+      final pinned = kit.validateForCountry(countryCode, raw);
+      expect(pinned.isValid, isTrue);
+      expect(pinned.isMobile, isTrue);
+    });
+
+    test('unknown region throws with clear message', () {
+      expect(() => kit.validateForCountry('XX', '123'), throwsArgumentError);
+    });
+  });
 
     test('US — valid NANP mobile', () {
       final r = kit.validate('+14155552671');

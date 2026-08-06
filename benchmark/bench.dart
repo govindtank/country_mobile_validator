@@ -1,4 +1,4 @@
-import 'package:mobile_num_kit/mobile_num_kit.dart';
+import 'package:country_mobile_validator/country_mobile_validator.dart';
 
 void main() {
   final kit = MobileNumberKit();

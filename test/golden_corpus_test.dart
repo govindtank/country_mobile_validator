@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:mobile_num_kit/mobile_num_kit.dart';
+import 'package:country_mobile_validator/country_mobile_validator.dart';
 import 'package:test/test.dart';
 
 /// Golden corpus test: every region's official example mobile number from the

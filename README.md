@@ -1,12 +1,12 @@
-# mobile_num_kit
+# country_mobile_validator
 
 ![architecture](assets/architecture.svg)
 
-**Range-aware, mobile-only phone number validation for every country — with
-refreshable, verified metadata.**
+**Validate mobile numbers per country with the real, actual length ranges —
+works out-of-the-box with `country_code_picker`.**
 
-`mobile_num_kit` is the missing piece in the Dart ecosystem: existing phone
-packages validate "any phone number" against **frozen** metadata, return
+`country_mobile_validator` is the missing piece in the Dart ecosystem: existing
+phone packages validate "any phone number" against **frozen** metadata, return
 booleans, and can't tell you that a number is a **mobile** number (or that
 Argentina allows **10–11** digits while New Zealand allows **8–10**).
 
@@ -16,6 +16,8 @@ This library:
   toll-free, premium-rate, and short codes.
 - ✅ **Range-aware**: every country exposes its real mobile length range
   (`8–10`, `10–11`, …) so you never hardcode "10 digits" again.
+- ✅ **`country_code_picker`-friendly**: pick a country, validate the number
+  against *that country's* actual mobile length range — no second library.
 - ✅ **Refreshable metadata** (SHA-256 verified, offline fallback) — bundled
   data from [libphonenumber](https://github.com/google/libphonenumber)
   (Apache-2.0), updatable at runtime.
@@ -29,7 +31,7 @@ This library:
 ## Quick start
 
 ```dart
-import 'package:mobile_num_kit/mobile_num_kit.dart';
+import 'package:country_mobile_validator/country_mobile_validator.dart';
 
 final kit = MobileNumberKit();
 
@@ -46,19 +48,64 @@ print(v.validate('911234567').isValid);           // false (too short)
 print(v.lengthHint);                              // "10–11 digits"
 ```
 
+## `country_code_picker` integration (the workflow this library was built for)
+
+Use [country_code_picker](https://pub.dev/packages/country_code_picker) for the
+flag/dial-code picker, then validate against **that country's actual mobile
+length range** — the picker gives you `Country.countryCode` (`'IN'`, `'US'`…)
+and `Country.dialCode` (`'+91'`…). No second library needed:
+
+```dart
+import 'package:country_code_picker/country_code_picker.dart';
+import 'package:country_mobile_validator/country_mobile_validator.dart';
+
+final kit = MobileNumberKit();
+Country? selected;
+
+CountryCodePicker(
+  onChanged: (Country c) => selected = c,
+)
+
+// On submit:
+void submit(String input) {
+  final v = kit.forRegion(selected!.countryCode);     // e.g. 'IN'
+  final res = v.validate(input);                       // national format
+  if (!res.isValid) {
+    // Error message uses the REAL range, e.g. "Enter a valid Indian mobile
+    // number (10 digits)" — never a hardcoded length.
+    error = 'Enter a valid mobile number (${v.lengthHint})';
+  }
+}
+```
+
+Live length feedback while typing (still valid for AR 10–11, NZ 8–10…):
+
+```dart
+controller.addListener(() {
+  final v = kit.forRegion(selected!.countryCode);
+  final len = controller.text.replaceAll(RegExp(r'\D'), '').length;
+  setState(() => hint = v.isMobileLength(len) ? '✓' : 'Needs ${v.lengthHint}');
+});
+```
+
+Or use the convenience one-liner:
+
+```dart
+final res = kit.validateForCountry(selected!.countryCode, input);
+```
+
 ## The range API (the differentiator)
 
 ```dart
 final v = kit.forRegion('NZ');                    // New Zealand
-print(v.mobileRange);      // 8–10
-print(v.mobileRanges);     // [{min: 8, max: 10}] — full list, per-type
-print(v.lengthHint);       // "8–10 digits"
-print(v.isMobileLength(8));// true
-print(v.isMobileLength(7));// false
+print(v.mobileLengthRange);  // (8, 10)
+print(v.lengthHint);         // "8–10 digits"
+print(v.isMobileLength(8));  // true
+print(v.isMobileLength(7));  // false
 ```
 
 Length variance is real: **AR 10–11, NZ 8–10, BR 10–11, ID 9–12, DE 10–11,
-GB 10, IN 10, US 10**. `mobile_num_kit` knows them all.
+GB 10, IN 10, US 10**. `country_mobile_validator` knows them all.
 
 ## Type awareness (OTP-safe verdicts)
 

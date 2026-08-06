@@ -296,7 +296,7 @@
       "languageVersion": "3.4"
     },
     {
-      "name": "mobile_num_kit",
+      "name": "country_mobile_validator",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.5"

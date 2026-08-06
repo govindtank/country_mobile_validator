@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart' show sha256;
-import 'package:mobile_num_kit/mobile_num_kit.dart';
+import 'package:country_mobile_validator/country_mobile_validator.dart';
 import 'package:test/test.dart';
 
 /// Fake fetcher serving manifest + snapshot from in-memory maps.

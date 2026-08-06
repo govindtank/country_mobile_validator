@@ -1,4 +1,4 @@
-/// Core result and model types for mobile_num_kit.
+/// Core result and model types for country_mobile_validator.
 library;
 
 /// Classification of a parsed phone number.
