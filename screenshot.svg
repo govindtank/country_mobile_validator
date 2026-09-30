@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e293b"/></linearGradient>
+    <linearGradient id="validGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#059669"/></linearGradient>
+    <linearGradient id="flagGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#000" flood-opacity="0.35"/></filter>
+    <filter id="phoneShadow"><feDropShadow dx="0" dy="8" stdDeviation="24" flood-color="#000" flood-opacity="0.45"/></filter>
+  </defs>
+
+  <!-- Left: Phone Device Mockup -->
+  <g transform="translate(40, 25)">
+    <!-- Device frame -->
+    <rect x="0" y="0" width="340" height="450" rx="32" fill="#0b0f19" filter="url(#phoneShadow)"/>
+    <rect x="4" y="4" width="332" height="442" rx="28" fill="url(#bg)"/>
+
+    <!-- Dynamic island -->
+    <rect x="120" y="12" width="100" height="18" rx="9" fill="#000000"/>
+
+    <!-- Top bar -->
+    <text x="24" y="26" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">9:41</text>
+    <text x="310" y="26" font-family="-apple-system, sans-serif" font-size="11" fill="#94a3b8" text-anchor="end">5G  100%</text>
+
+    <!-- App title -->
+    <text x="170" y="58" font-family="-apple-system, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" text-anchor="middle">Mobile Verification</text>
+    <text x="170" y="74" font-family="-apple-system, sans-serif" font-size="11" fill="#38bdf8" text-anchor="middle">249 Countries &amp; Length-Accurate Rules</text>
+
+    <!-- Form Container Card -->
+    <rect x="16" y="90" width="308" height="320" rx="16" fill="#090d16" stroke="#334155" stroke-width="1"/>
+
+    <!-- Input Field 1: India Mobile (+91) -->
+    <g transform="translate(32, 110)">
+      <text x="0" y="0" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">INDIA (+91)</text>
+      
+      <!-- Input box -->
+      <rect x="0" y="8" width="276" height="46" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+      
+      <!-- Country picker badge -->
+      <rect x="8" y="15" width="56" height="32" rx="6" fill="#0f172a"/>
+      <text x="36" y="35" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#f8fafc" text-anchor="middle">🇮🇳 +91</text>
+      
+      <!-- Phone number text -->
+      <text x="74" y="36" font-family="monospace" font-size="14" font-weight="600" fill="#f8fafc">98765 43210</text>
+      
+      <!-- Valid check badge -->
+      <circle cx="254" cy="31" r="10" fill="#10b981"/>
+      <text x="254" y="35" font-family="sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">✓</text>
+      
+      <!-- Validation verdict -->
+      <text x="4" y="68" font-family="-apple-system, sans-serif" font-size="10" font-weight="600" fill="#10b981">● Valid Indian Mobile (Exactly 10 digits, starts with 6-9)</text>
+    </g>
+
+    <!-- Input Field 2: United States (+1) -->
+    <g transform="translate(32, 195)">
+      <text x="0" y="0" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">UNITED STATES (+1)</text>
+      
+      <!-- Input box -->
+      <rect x="0" y="8" width="276" height="46" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+      
+      <!-- Country picker badge -->
+      <rect x="8" y="15" width="56" height="32" rx="6" fill="#0f172a"/>
+      <text x="36" y="35" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#f8fafc" text-anchor="middle">🇺🇸 +1</text>
+      
+      <!-- Phone number text -->
+      <text x="74" y="36" font-family="monospace" font-size="14" font-weight="600" fill="#f8fafc">(415) 555-2671</text>
+      
+      <!-- Valid check badge -->
+      <circle cx="254" cy="31" r="10" fill="#10b981"/>
+      <text x="254" y="35" font-family="sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">✓</text>
+      
+      <!-- Validation verdict -->
+      <text x="4" y="68" font-family="-apple-system, sans-serif" font-size="10" font-weight="600" fill="#10b981">● Valid NANP Mobile (Exactly 10 digits)</text>
+    </g>
+
+    <!-- Input Field 3: Germany (+49) -->
+    <g transform="translate(32, 280)">
+      <text x="0" y="0" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">GERMANY (+49)</text>
+      
+      <!-- Input box -->
+      <rect x="0" y="8" width="276" height="46" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      
+      <!-- Country picker badge -->
+      <rect x="8" y="15" width="56" height="32" rx="6" fill="#0f172a"/>
+      <text x="36" y="35" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#f8fafc" text-anchor="middle">🇩🇪 +49</text>
+      
+      <!-- Phone number text -->
+      <text x="74" y="36" font-family="monospace" font-size="14" font-weight="600" fill="#f8fafc">151 2345678</text>
+      
+      <!-- Valid check badge -->
+      <circle cx="254" cy="31" r="10" fill="#10b981"/>
+      <text x="254" y="35" font-family="sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">✓</text>
+      
+      <!-- Validation verdict -->
+      <text x="4" y="68" font-family="-apple-system, sans-serif" font-size="10" font-weight="600" fill="#38bdf8">● Mobile length 10-11 digits (Valid range)</text>
+    </g>
+
+    <!-- Home bar -->
+    <rect x="120" y="434" width="100" height="4" rx="2" fill="#ffffff" opacity="0.3"/>
+  </g>
+
+  <!-- Right: Feature Overview & Live Specs -->
+  <g transform="translate(420, 40)">
+    <text x="0" y="30" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="28" font-weight="800" fill="#0f172a">country_mobile_validator</text>
+    <text x="0" y="55" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" fill="#64748b">Zero-Dependency Per-Country Phone Validation</text>
+
+    <!-- Feature list card -->
+    <g transform="translate(0, 80)">
+      <g transform="translate(0, 0)">
+        <circle cx="10" cy="10" r="10" fill="#ecfdf5"/>
+        <text x="10" y="14" font-family="sans-serif" font-size="11" font-weight="700" fill="#059669" text-anchor="middle">✓</text>
+        <text x="30" y="14" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#1e293b">249 ISO-3166-1 Alpha-2 Country Codes</text>
+      </g>
+
+      <g transform="translate(0, 32)">
+        <circle cx="10" cy="10" r="10" fill="#ecfdf5"/>
+        <text x="10" y="14" font-family="sans-serif" font-size="11" font-weight="700" fill="#059669" text-anchor="middle">✓</text>
+        <text x="30" y="14" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#1e293b">Exact Mobile Length Ranges &amp; Leading Digit Rules</text>
+      </g>
+
+      <g transform="translate(0, 64)">
+        <circle cx="10" cy="10" r="10" fill="#ecfdf5"/>
+        <text x="10" y="14" font-family="sans-serif" font-size="11" font-weight="700" fill="#059669" text-anchor="middle">✓</text>
+        <text x="30" y="14" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#1e293b">Seamless with country_code_picker &amp; Form Fields</text>
+      </g>
+
+      <g transform="translate(0, 96)">
+        <circle cx="10" cy="10" r="10" fill="#ecfdf5"/>
+        <text x="10" y="14" font-family="sans-serif" font-size="11" font-weight="700" fill="#059669" text-anchor="middle">✓</text>
+        <text x="30" y="14" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#1e293b">Zero External Dependencies &amp; Pure Dart Support</text>
+      </g>
+
+      <g transform="translate(0, 128)">
+        <circle cx="10" cy="10" r="10" fill="#ecfdf5"/>
+        <text x="10" y="14" font-family="sans-serif" font-size="11" font-weight="700" fill="#059669" text-anchor="middle">✓</text>
+        <text x="30" y="14" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#1e293b">Sub-microsecond Validation Benchmark Speed</text>
+      </g>
+    </g>
+
+    <!-- Code Preview Card -->
+    <g transform="translate(0, 260)">
+      <rect x="0" y="0" width="340" height="110" rx="10" fill="#0f172a"/>
+      <text x="16" y="24" font-family="Consolas, Monaco, monospace" font-size="11" fill="#38bdf8">final result = CountryMobileValidator.validate(</text>
+      <text x="16" y="44" font-family="Consolas, Monaco, monospace" font-size="11" fill="#e2e8f0">  mobile: '9876543210',</text>
+      <text x="16" y="64" font-family="Consolas, Monaco, monospace" font-size="11" fill="#e2e8f0">  countryCode: 'IN',</text>
+      <text x="16" y="84" font-family="Consolas, Monaco, monospace" font-size="11" fill="#38bdf8">);</text>
+      <text x="16" y="100" font-family="Consolas, Monaco, monospace" font-size="11" fill="#10b981">print(result.isValid); // true</text>
+    </g>
+  </g>
+</svg>
