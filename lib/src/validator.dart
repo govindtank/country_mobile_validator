@@ -47,6 +47,30 @@ class MobileValidator {
     return r.$1 == r.$2 ? '${r.$1} digits' : '${r.$1}–${r.$2} digits';
   }
 
+  /// Formats raw digits into standardized E.164 (+CountryCodeNationalNumber).
+  String? formatE164(String input) {
+    final clean = input.replaceAll(RegExp(r'\D'), '');
+    if (clean.isEmpty) return null;
+    final cc = region.countryCode.toString();
+    final national = clean.startsWith(cc) && clean.length > cc.length
+        ? clean.substring(cc.length)
+        : clean;
+    return '+$cc$national';
+  }
+
+  /// Formats raw input with spaces as a standard readable national number.
+  String formatNational(String input) {
+    final clean = input.replaceAll(RegExp(r'\D'), '');
+    if (clean.length <= 4) return clean;
+    if (clean.length <= 7) {
+      return '${clean.substring(0, 3)} ${clean.substring(3)}';
+    }
+    if (clean.length <= 10) {
+      return '${clean.substring(0, 3)} ${clean.substring(3, 6)} ${clean.substring(6)}';
+    }
+    return '${clean.substring(0, 3)} ${clean.substring(3, 6)} ${clean.substring(6, 10)} ${clean.substring(10)}';
+  }
+
   /// True if [length] falls within this country's valid mobile length range.
   ///
   /// Use this for live input feedback while the user is still typing

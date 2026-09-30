@@ -28,3 +28,13 @@
 - Refreshable metadata via `MetadataUpdater` (SHA-256 verified, offline
   fallback).
 - Golden corpus test suite over all 247 mobile-enabled regions.
+
+## 0.2.1
+
+* Added  and  helpers to .
+* Automated OIDC publishing via GitHub Actions.
+
+## 0.2.1
+
+* Added `formatE164()` and `formatNational()` helpers to `MobileValidator`.
+* Automated OIDC publishing via GitHub Actions.
