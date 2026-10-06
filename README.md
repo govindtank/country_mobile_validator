@@ -1,15 +1,12 @@
 # country_mobile_validator
 
-[![Pub Version](https://img.shields.io/pub/v/country_mobile_validator.svg?style=flat-square&color=blue)](https://pub.dev/packages/country_mobile_validator)
-[![Pub Points](https://img.shields.io/pub/points/country_mobile_validator?style=flat-square&color=2E8B57&label=pub%20points)](https://pub.dev/packages/country_mobile_validator/score)
-[![Pub Likes](https://img.shields.io/pub/likes/country_mobile_validator?style=flat-square)](https://pub.dev/packages/country_mobile_validator)
-[![CI](https://github.com/govindtank/country_mobile_validator/actions/workflows/ci.yml/badge.svg)](https://github.com/govindtank/country_mobile_validator/actions)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20Web%20%7C%20macOS%20%7C%20Windows%20%7C%20Linux-blue?style=flat-square)](https://pub.dev/packages/country_mobile_validator)
-
-**Validate mobile phone numbers per country using accurate, real length ranges** — designed to work seamlessly out-of-the-box with `country_code_picker` and Flutter form fields.
-
-Now available on **[pub.dev/packages/country_mobile_validator](https://pub.dev/packages/country_mobile_validator)**.
+<p align="center">
+  <a href="https://pub.dev/packages/country_mobile_validator"><img src="https://img.shields.io/pub/v/country_mobile_validator.svg?style=flat-square&color=blue" alt="Pub Version"></a>
+  <a href="https://pub.dev/packages/country_mobile_validator/score"><img src="https://img.shields.io/pub/points/country_mobile_validator?style=flat-square&color=2E8B57&label=pub%20points" alt="Pub Points"></a>
+  <a href="https://pub.dev/packages/country_mobile_validator"><img src="https://img.shields.io/pub/likes/country_mobile_validator?style=flat-square" alt="Pub Likes"></a>
+  <a href="https://github.com/govindtank/country_mobile_validator/actions"><img src="https://github.com/govindtank/country_mobile_validator/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square" alt="License"></a>
+</p>
 
 ---
 
