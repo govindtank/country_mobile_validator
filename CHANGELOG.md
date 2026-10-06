@@ -1,3 +1,7 @@
+## 0.2.2
+
+* docs: update centered vector badges and documentation.
+
 ## 0.2.1
 
 * Added `formatE164()` and `formatNational()` helpers to `MobileValidator`.
