@@ -1,3 +1,8 @@
+## 0.3.0
+
+* **International E.164 Formatting**: Polished E.164 and national formatting pipelines with country code prefix normalization.
+* **Corpus & Performance**: Verified international golden corpus across all ISO 3166-1 alpha-2 regions.
+
 ## 0.2.2
 
 * docs: update centered vector badges and documentation.
