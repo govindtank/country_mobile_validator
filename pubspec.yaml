@@ -2,14 +2,18 @@ name: country_mobile_validator
 description: >-
   Validate mobile numbers per country using real length ranges (8-10, 10-11
   digits), mobile-only detection, and a country_code_picker-friendly API.
-version: 0.3.0
+version: 0.3.1
 repository: https://github.com/govindtank/country_mobile_validator
+funding:
+  - https://github.com/sponsors/govindtank
+  - https://buymeacoffee.com/govindtanko
+
 topics:
-  - mobile
-  - validation
-  - phone-number
+  - phone-validator
+  - mobile-number
   - country-code
-  - flutter
+  - e164
+  - validation
 
 environment:
   sdk: ^3.5.0

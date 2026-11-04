@@ -1,3 +1,7 @@
+## 0.3.1
+
+* **Discovery & Metadata**: Added official funding channels and refined search discovery topics.
+
 ## 0.3.0
 
 * **International E.164 Formatting**: Polished E.164 and national formatting pipelines with country code prefix normalization.
