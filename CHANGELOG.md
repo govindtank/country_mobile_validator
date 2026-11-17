@@ -1,3 +1,17 @@
+## 0.4.0
+
+* **Telecom Carrier & Network Detection (`CarrierDetector`)**: Instant operator and telecom circle mapping for mobile numbers:
+  * Detects major Indian carriers (Jio True 5G, Airtel 5G Plus, Vi, BSNL) and service circles (e.g. Maharashtra, Delhi NCR, Karnataka).
+  * Direct detection API: `CarrierDetector.detect(number)` and string extension `number.detectCarrier()`.
+* **Zero-Boilerplate String Extensions**: Direct validation and formatting helpers on `String`:
+  * `isValidMobile([region])`: One-line boolean check.
+  * `isOtpDeliverable([region])`: Rejects toll-free, premium, and landline destinations.
+  * `toE164([region])`: Canonical international E.164 string (`+919876543210`).
+  * `toWhatsAppUrl({message})`: One-click WhatsApp direct chat link generator (`https://wa.me/919876543210?text=...`).
+  * `formatNational([region])`: Formats into readable local groups (`98765 43210`).
+* **Upgraded Vector Visual Showcase**: High-resolution 1200x680 diagram illustrating real authentication input mockups, carrier chips, and WhatsApp links.
+* **100% Test Coverage**: Expanded unit tests across carrier detection rules and extension methods.
+
 ## 0.3.1
 
 * **Discovery & Metadata**: Added official funding channels and refined search discovery topics.

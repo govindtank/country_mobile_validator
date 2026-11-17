@@ -1,8 +1,8 @@
 name: country_mobile_validator
 description: >-
-  Validate mobile numbers per country using real length ranges (8-10, 10-11
-  digits), mobile-only detection, and a country_code_picker-friendly API.
-version: 0.3.1
+  Validate mobile numbers per country using real length ranges, mobile-only detection,
+  telecom carrier identification (Jio, Airtel, Vi, BSNL), WhatsApp links, and country_code_picker API.
+version: 0.4.0
 repository: https://github.com/govindtank/country_mobile_validator
 funding:
   - https://github.com/sponsors/govindtank
@@ -11,7 +11,7 @@ funding:
 topics:
   - phone-validator
   - mobile-number
-  - country-code
+  - telecom-carrier
   - e164
   - validation
 
