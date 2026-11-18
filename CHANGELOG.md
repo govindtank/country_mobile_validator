@@ -1,3 +1,7 @@
+## 0.4.1
+
+* **Pub.dev Score Optimization (160/160)**: Formatted package description to conform strictly with pana's 60–180 character limit.
+
 ## 0.4.0
 
 * **Telecom Carrier & Network Detection (`CarrierDetector`)**: Instant operator and telecom circle mapping for mobile numbers:
